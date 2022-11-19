@@ -100,6 +100,15 @@ app.get("/fruits/new", (req, res) => {
     res.render('fruits/new.ejs')
 })
 
+//post route
+app.post('/fruits' , (req, res) =>{
+    req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
+    Fruit.create(req.body, (err, createdFruit) =>{
+        console.log(createdFruit)
+        res.redirect('/fruits')
+    })
+})
+
 app.get('/fruits/:id', (req, res) => {
    //go and get fruit from database
     Fruit.findById(req.params.id)

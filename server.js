@@ -95,6 +95,11 @@ app.get('/fruits', (req, res) => {
     
 })
 
+// new route
+app.get("/fruits/new", (req, res) => {
+    res.render('fruits/new.ejs')
+})
+
 app.get('/fruits/:id', (req, res) => {
    //go and get fruit from database
     Fruit.findById(req.params.id)

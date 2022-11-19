@@ -89,7 +89,8 @@ app.get('/fruits', (req, res) => {
     //get all fruits from mango and send them back
     Fruit.find({}) 
         .then((fruits) => {
-            res.json(fruits)
+            //res.json(fruits)
+            res.render('fruits/index.ejs', {fruits})
         })
     
 })

@@ -95,6 +95,15 @@ app.get('/fruits', (req, res) => {
     
 })
 
+app.get('/fruits/:id', (req, res) => {
+   //go and get fruit from database
+    Fruit.findById(req.params.id)
+    .then((fruit) =>{
+        res.render('fruits/show.ejs', {fruit})
+    })
+    
+})
+
 ////////////////////////////////////////////
 // Server Listener
 ////////////////////////////////////////////

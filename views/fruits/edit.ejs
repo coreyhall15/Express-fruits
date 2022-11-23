@@ -6,17 +6,32 @@
     <%- include("../partials/header.ejs") %>
     <main>
       <div>
-
-        <article>
-          <h2><%= fruit.name %> - <%= fruit.readyToEat ? "Ripe" : "Not Ripe" %></h2>
-          <h3><%= fruit.color %></h3>
-          <a href="/fruits/<%= fruit._id %>/edit"><button>Edit</button></a>
-          <form action="/fruits/<%= fruit._id %>?_method=DELETE" method="POST">
-            <input type="submit" value="Delete"/>
-          </form>
-          <a href="/fruits/"><button>Back to Main</button></a>
-        </article>
-
+        <form action="/fruits/<%= fruit._id %>?_method=PUT" method="post">
+          <fieldset>
+            <legend>Edit a <%= fruit.name %></legend>
+            <label>
+              NAME:<input
+                type="text"
+                name="name"
+                value="<%= fruit.name %>"
+                placeholder="enter fruit name"
+              />
+            </label>
+            <label>
+              COLOR:<input
+                type="text"
+                name="color"
+                value="<%= fruit.color %>"
+                placeholder="enter fruit name"
+              />
+            </label>
+            <label>
+              READY TO EAT:<input type="checkbox" name="readyToEat" <%=
+              fruit.readyToEat ? "checked" : "" %> />
+            </label>
+          </fieldset>
+          <input type="submit" value="Update <%= fruit.name %>" />
+        </form>
       </div>
     </main>
   </body>

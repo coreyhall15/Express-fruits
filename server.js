@@ -110,16 +110,31 @@ app.post('/fruits' , (req, res) =>{
 })
 
 
-//Get edit route
-// show route
-app.get("/fruits/:id", (req, res) => {
+
+// show route to edit
+app.get("/fruits/:id/edit", (req, res) => {
     // get the id from params
     const id = req.params.id
 
     // find the particular fruit from the database
     Fruit.findById(id, (err, foundFruit) => {
+        console.log(foundFruit)
         // render the template with the data from the database
-        res.render("fruits/show.ejs", {fruit: foundFruit})
+        res.render("fruits/edit.ejs", {fruit: foundFruit})
+    })
+})
+
+
+//update route
+app.put("/fruits/:id", (req, res) => {
+    // get the id from params
+    const id = req.params.id
+    // check if the readyToEat property should be true or false
+    req.body.readyToEat = req.body.readyToEat === "on" ? true : false
+    // update the fruit
+    Fruit.findByIdAndUpdate(id, req.body, {new: true}, (err, updatedFruit) => {
+        // redirect user back to main page when fruit 
+        res.redirect("/fruits")
     })
 })
 

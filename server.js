@@ -109,6 +109,21 @@ app.post('/fruits' , (req, res) =>{
     })
 })
 
+
+//Get edit route
+// show route
+app.get("/fruits/:id", (req, res) => {
+    // get the id from params
+    const id = req.params.id
+
+    // find the particular fruit from the database
+    Fruit.findById(id, (err, foundFruit) => {
+        // render the template with the data from the database
+        res.render("fruits/show.ejs", {fruit: foundFruit})
+    })
+})
+
+//Get ID route
 app.get('/fruits/:id', (req, res) => {
    //go and get fruit from database
     Fruit.findById(req.params.id)
@@ -117,6 +132,11 @@ app.get('/fruits/:id', (req, res) => {
     })
     
 })
+
+
+
+
+
 
 ////////////////////////////////////////////
 // Server Listener
